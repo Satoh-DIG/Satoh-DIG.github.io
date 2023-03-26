@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <script type="text/javascript" src="module/lodash.min.js"></script>
+  <script type="text/javascript" src="module/test-boilerplate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+</head>
+
+<body>
+  <h1>プラネタリギヤの回転数計算</h1>
+
+  <div id="boxFlame1"
+    style="width:600px;height:60px;margin:0 auto;justify-content:center;background:rgb(155, 155, 155);border:1px solid rgb(0, 0, 0);">
+
+    <!-- サマリ選択 リストから選ばせる -->
+    <label for="summary">①ギヤサマリを選択してください</label>
+    </br>
+    <select id="summary">
+      <option value="">--選択して下さい--</option>
+      <option value="S-001">S-001</option>
+      <option value="S-002">S-002</option>
+      <option value="G-101">G-101</option>
+      <!-- 
+    本来は外部リストを読み込み、それを表示させる
+    もしくはallGearSummary.jsのsummaryIdを値として
+    表示させたい
+  -->
+    </select>
+    <input type="button" value="決定" id="goButton">
+  </div>
+
+  <!-- 選択されたサマリを表示する枠 -->
+  <div id="summaryBox"
+    style="width:600px;height:200px;margin:0 auto;justify-content:center;background:rgb(252, 252, 252);border:1px solid rgb(0, 0, 0);">
+  </div>
+
+  <!-- 拘束部位を選択 -->
+  <div id="boxFlame2"
+    style="width:600px;height:60px;margin:0 auto;justify-content:center;background:rgb(155, 155, 155);border:1px solid rgb(0, 0, 0);">
+
+    <label for="fixedPart">②拘束部位を指定してください</label>
+    </br>
+    <select id="fixedPart">
+      <option value="">--選択して下さい--</option>
+      <option value="SunGear">SunGear</option>
+      <option value="Carrier">Carrier</option>
+      <option value="RingGear">RingGear</option>
+    </select>
+    <input type="button" value="決定" id="fixedPartButton">
+
+  </div>
+
+  <!-- 回転部位を選択し、回転数を入力 -->
+  <div id="boxFlame3"
+  style="width:600px;height:60px;margin:0 auto;justify-content:center;background:rgb(155, 155, 155);border:1px solid rgb(0, 0, 0);">
+
+    <label for="inputRotate">③回転部位を選択してください</label>
+    </br>
+    <select id="inputRotate">
+      <option value="">--選択して下さい--</option>
+      <option value="SunGear">SunGear</option>
+      <option value="Carrier">Carrier</option>
+      <option value="RingGear">RingGear</option>
+    </select>
+    <input type="button" value="決定" id="inputRotateButton">
+  </div>
+
+  <div id="boxFlame4"
+  style="width:600px;height:60px;margin:0 auto;justify-content:center;background:rgb(155, 155, 155);border:1px solid rgb(0, 0, 0);">
+    <label for="inputRev">④回転数を入力してください</label>
+    </br>
+    <input type="text" id="inputRev" name="name" required minlength="4" maxlength="8" size="10">
+    <input type="button" value="決定" id="inputRevButton">
+  </div>
+
+  <div id="boxFlame5"
+  style="width:600px;height:30px;margin:0 auto;justify-content:center;background:rgb(155, 155, 155);border:1px solid rgb(0, 0, 0);">
+  <input type="button" value="共線図作成" id="drawButton">
+  <input type="button" value="共線図消去" id="destroyButton">
+  </div>
+
+  <!-- 結果共線図を表示する枠 -->
+  <div
+    style="width:600px;height:350px;margin:0 auto;justify-content:center;background:rgb(255, 255, 255);border:1px solid rgb(0, 0, 0);">
+
+    <!-- 散布図を表示 -->
+    <canvas id="chart"></canvas>
+
+  </div>
+
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="allGearSummary.js"></script>
+</body>
+
+</html>
